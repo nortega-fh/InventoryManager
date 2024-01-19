@@ -1,4 +1,5 @@
-﻿using InventoryManager.Products;
+﻿using InventoryManager.Exceptions;
+using InventoryManager.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace InventoryManager.Inventory
         public static List<Product> GetProducts() => products;
         
         public static void AddProduct(Product product) => products.Add(product);
+
+        public static List<Product> SearchProduct(string name)
+        {
+            List<Product> searchedProducts = products.FindAll(product => product.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+            if(searchedProducts.Count == 0) 
+            { 
+                throw new NoProductFoundException(name); 
+            }
+            return searchedProducts;
+        }
         
     }
 }
