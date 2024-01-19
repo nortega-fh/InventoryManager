@@ -23,6 +23,16 @@ namespace InventoryManagerTests
         }
 
         [Fact]
+        public void TestAddExistingProduct()
+        {
+            Product testProduct = new("test1", 25.1f, 2);
+            Inventory.AddProduct(testProduct);
+
+            Product existingProduct = new("test1", 30.2f, 5);
+            Assert.Throws<ProductAlreadyExistsException>(() => Inventory.AddProduct(existingProduct));
+        }
+
+        [Fact]
         public void TestEditExistingProduct()
         {
             Product testProduct = new("test1", 25.1f, 2);
