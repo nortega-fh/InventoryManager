@@ -46,6 +46,30 @@ namespace InventoryManagerTests
         }
 
         [Fact]
+        public void TestDeleteExistingProduct()
+        {
+            Product deletedProduct = new("test1", 25.1f, 2);
+            Inventory.AddProduct(deletedProduct);
+
+            Product testProduct = new("test2", 35.5f, 10);
+            Inventory.AddProduct(testProduct);
+
+            Inventory.DeleteProduct(deletedProduct);
+
+
+            Assert.True(Inventory.GetProducts().Count == 1);
+            Assert.Null(Inventory.GetProducts().Find(p => p.Name.Equals(deletedProduct.Name)));
+        }
+
+        [Fact]
+        public void TestDeleteNonExistingProduct()
+        {
+            Product testProduct = new("modifyNotExistingTest2", 25.1f, 2);
+
+            Assert.Throws<NoProductFoundException>(() => Inventory.DeleteProduct(testProduct));
+        }
+
+        [Fact]
         public void TestSearchExistingProduct()
         {
             Product testProduct = new("test1", 25.1f, 2);
