@@ -39,7 +39,7 @@ namespace InventoryManagerTests
             Inventory.AddProduct(testProduct);
 
             Product modifiedTestProduct = new("test1", 35.5f, 10);
-            Inventory.EditProduct(modifiedTestProduct);
+            Inventory.EditProduct("test1", modifiedTestProduct);
 
             Product? resultOfEdit = Inventory.GetProducts().Find(p => p.Name.Equals("test1", StringComparison.Ordinal));
 
@@ -52,7 +52,7 @@ namespace InventoryManagerTests
         {
             Product testProduct = new("modifyNotExistingTest2", 25.1f, 2);
 
-            Assert.Throws<NoProductFoundException>(() => Inventory.EditProduct(testProduct));
+            Assert.Throws<NoProductFoundException>(() => Inventory.EditProduct("modifyNotExistingTest2", testProduct));
         }
 
         [Fact]

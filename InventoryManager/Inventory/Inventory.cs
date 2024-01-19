@@ -25,11 +25,11 @@ namespace InventoryManager.Inventory
             throw new ProductAlreadyExistsException(product.Name);
         }
 
-        public static void EditProduct(Product product)
+        public static void EditProduct(string name, Product product)
         {
             for (int i = 0; i < products.Count; i++)
             {
-                if (products[i].Name == product.Name)
+                if (products[i].Name == name)
                 {
                     products[i] = product;
                     return;
