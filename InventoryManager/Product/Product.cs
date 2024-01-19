@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace InventoryManager.Products
 {
-    internal class Product
+    public class Product(string name, float price, int quantity)
     {
+        public string Name { get; set; } = name;
+        public float Price { get; set; } = price;
+        public int Quantity { get; set; } = quantity;
     }
 }
