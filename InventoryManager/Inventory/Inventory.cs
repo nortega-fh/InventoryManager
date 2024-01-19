@@ -14,7 +14,16 @@ namespace InventoryManager.Inventory
 
         public static List<Product> GetProducts() => products;
 
-        public static void AddProduct(Product product) => products.Add(product);
+        public static void AddProduct(Product product)
+        {
+            Product? productInInventory = products.Find(p => p.Name.Equals(product.Name, StringComparison.OrdinalIgnoreCase));
+            if (productInInventory is null)
+            {
+                products.Add(product);
+                return;
+            }
+            throw new ProductAlreadyExistsException(product.Name);
+        }
 
         public static void EditProduct(Product product)
         {
