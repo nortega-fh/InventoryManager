@@ -28,6 +28,19 @@ namespace InventoryManager.Inventory
             }
             throw new NoProductFoundException(product.Name);
         }
+
+        public static void DeleteProduct(Product product)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Name == product.Name)
+                {
+                    products.RemoveAt(i);
+                    return;
+                }
+            }
+            throw new NoProductFoundException(product.Name);
+        }
    
         public static List<Product> SearchProduct(string name)
         {
