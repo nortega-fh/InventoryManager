@@ -239,22 +239,13 @@ namespace InventoryManager
                             Console.WriteLine("Invalid answer. Please try agan");
                             newPrice = Console.ReadLine();
                         }
+                        price = float.Parse(newPrice);
                         while (price < 0f)
                         {
-                            string? selectedPriceString = Console.ReadLine();
-                            while (selectedPriceString is null)
-                            {
-                                Console.WriteLine("Please type a number for the price");
-                                selectedPriceString = Console.ReadLine();
-                            }
                             try
                             {
-                                price = float.Parse(selectedPriceString);
-                                if(price < 0f)
-                                {
-                                    Console.WriteLine("Please type a positive number");
-                                    continue;
-                                }
+                                Console.WriteLine("Please type a positive number");
+                                price = float.Parse(Console.ReadLine() ?? "-1");
                             }
                             catch (InvalidCastException)
                             {
@@ -288,22 +279,13 @@ namespace InventoryManager
                             Console.WriteLine("Invalid answer. Please try again");
                             newQuantity = Console.ReadLine();
                         }
+                        quantity = int.Parse(newQuantity);
                         while (quantity < 0)
                         {
-                            string? selectedQuantityString = Console.ReadLine();
-                            while (selectedQuantityString is null)
-                            {
-                                Console.WriteLine("Please type a number for the quantity");
-                                selectedQuantityString = Console.ReadLine();
-                            }
                             try
                             {
-                                quantity = int.Parse(selectedQuantityString);
-                                if (quantity < 0)
-                                {
-                                    Console.WriteLine("Please type a positive number");
-                                    continue;
-                                }
+                                Console.WriteLine("Please type a positive number");
+                                quantity = int.Parse(Console.ReadLine() ?? "-1");
                             }
                             catch (InvalidCastException)
                             {
